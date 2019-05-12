@@ -8,12 +8,12 @@ namespace parking
 {
     public class DCHelper
     {
-        //初始化
+        
         [DllImport("dcrf32.dll")]
-        public static extern int dc_init(int port, int baud);
-        //蜂鸣
+        public static extern int dc_init(int port, int baud);//初始化
+        
         [DllImport("dcrf32.dll")]
-        public static extern int dc_beep(int icdev, int _Msec);
+        public static extern int dc_beep(int icdev, int _Msec);//蜂鸣
 
         [DllImport("dcrf32.dll")]
         public static extern int dc_card(int icdev, int _Mode, ref long _Snr);    //寻卡
