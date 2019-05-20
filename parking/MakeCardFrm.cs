@@ -24,9 +24,9 @@ namespace parking
         private void MakeCardFrm_Load(object sender, EventArgs e)
         {
             int snum, tnum;//snum=固定，tnum=临时
-            snum=(int)SpaceInfoManag.getSpaceByType("固定");
-            tnum=(int)SpaceInfoManag.getSpaceByType("临时");
-            MessageBox.Show("固定车位"+snum+"个，临时车位"+tnum+"个");
+            snum = (int)SpaceInfoManag.getSpaceByType("固定卡");
+            tnum = (int)SpaceInfoManag.getSpaceByType("临时卡");
+            MessageBox.Show("固定车位" + snum + "个，临时车位" + tnum + "个");
             icNo.Text = System.DateTime.Now.ToString("yyyymddhhmmss");
         }
         //调用方法
@@ -38,27 +38,53 @@ namespace parking
         //发卡
         private void MakeCard()
         {
+            string s = "";
             if (state1.Checked == true)
             {
-                int i = (int)BikeInfoManag.MakeCard(icNo.Text, bikeNo.Text, bikeOwerName.Text, bikeOwerTel.Text, bikeOwerAddr.Text, icStateTime.Value, icExpireTime.Value, state1.Text, ".\\image\\" + bikeNo.Text + ".jpg");
-                if (i > 0)
-                {
-                    MessageBox.Show("发卡成功");
-                }
+                s = "固定卡";
             }
-            else if (state2.Checked == true)
+            else if(state2.Checked==true)
             {
-                int i = (int)BikeInfoManag.MakeCard(icNo.Text, bikeNo.Text, bikeOwerName.Text, bikeOwerTel.Text, bikeOwerAddr.Text, icStateTime.Value, icExpireTime.Value, state2.Text, ".\\image\\" + bikeNo.Text + ".jpg");
-                if (i > 0)
+                s = "临时卡";
+            }
+            int icdev = DCHelper.dc_init(100, 115200);
+            if (icdev > 0)
+            {
+                long snr = 0;
+                int dccard = DCHelper.dc_card(icdev, 0, ref snr);
+                if (dccard == 0)
                 {
-                    MessageBox.Show("发卡成功");
+                    byte[] password = new byte[] { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
+                    int dckey = DCHelper.dc_load_key(icdev, 0, 1, password);
+                    if (dckey == 0)
+                    {
+                        int authkey = DCHelper.dc_authentication(icdev, 0, 1);
+                        if (authkey == 0)
+                        {
+                            int dcwrity = DCHelper.dc_write(icdev, 4, icNo.Text);
+                            if (dcwrity == 0)
+                            {
+                                int i = (int)BikeInfoManag.MakeCard(icNo.Text, bikeNo.Text, bikeOwerName.Text, bikeOwerTel.Text, bikeOwerAddr.Text, icStateTime.Value, icExpireTime.Value, s, ".\\images\\" + bikeNo.Text + ".jpg",userInfo.Username);
+                                if (i > 0)
+                                {
+                                    int m = (int)SpaceInfoManag.updateSpaceInfo(icNo.Text, s);
+                                    DCHelper.dc_beep(icdev, 100);
+                                    MessageBox.Show("发卡成功");
+                                }
+                            }
+                        }
+                       
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("请正确放置卡！");
                 }
             }
             else
             {
-                MessageBox.Show("请选择身份");
+                MessageBox.Show("请检查设备！");
             }
-               
         }
         //判断空值
         private void NoNull()

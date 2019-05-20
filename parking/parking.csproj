@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DCHelper.cs" />
+    <Compile Include="EnterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnterForm.Designer.cs">
+      <DependentUpon>EnterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
       <DependentUpon>Reg.cs</DependentUpon>
     </Compile>
     <Compile Include="userInfo.cs" />
+    <EmbeddedResource Include="EnterForm.resx">
+      <DependentUpon>EnterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,9 +119,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BAL\BAL.csproj">
+    <ProjectReference Include="..\BAL\BLL.csproj">
       <Project>{61461a80-2356-424f-9459-213eed030870}</Project>
-      <Name>BAL</Name>
+      <Name>BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{b101a0fe-2958-4bbd-a27f-6f7955e453ba}</Project>

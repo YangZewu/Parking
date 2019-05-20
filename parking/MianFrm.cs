@@ -41,5 +41,12 @@ namespace parking
             m.MdiParent = this;
             m.Show();
         }
+
+        private void 入库管理ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EnterForm en = new EnterForm();
+            en.MdiParent = this;
+            en.Show();
+        }
     }
 }

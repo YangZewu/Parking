@@ -39,6 +39,7 @@ namespace parking
                 {
                     File.Create(inipath);
                 }
+                userInfo.Username = username.Text;
                 OperaIniFile.SetValue("数据库服务器地址", "address", ip.Text, inipath);
                 MessageBox.Show("恭喜你登录成功！");
                 MianFrm mainfm = new MianFrm();

@@ -51,7 +51,12 @@ namespace DAL
             SqlCommand com = new SqlCommand(sql, Connection);
             return com.ExecuteNonQuery();
         }
-
+        public static SqlDataReader executeReader(string sql)
+        {
+            SqlCommand com = new SqlCommand(sql, Connection);
+            SqlDataReader sdr = com.ExecuteReader();
+            return sdr;
+        }
     }
  }
 

@@ -12,5 +12,9 @@ namespace BAL
         {
             return SpaceInfoServer.getSpaceByType(type);
         }
+        public static object updateSpaceInfo(string icon, string type)
+        {
+            return SpaceInfoServer.updateSpaceInfo(icon,type);
+        }
     }
 }

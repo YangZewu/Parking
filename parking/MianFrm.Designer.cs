@@ -100,13 +100,14 @@
             // 入库管理ToolStripMenuItem
             // 
             this.入库管理ToolStripMenuItem.Name = "入库管理ToolStripMenuItem";
-            this.入库管理ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.入库管理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.入库管理ToolStripMenuItem.Text = "入库管理";
+            this.入库管理ToolStripMenuItem.Click += new System.EventHandler(this.入库管理ToolStripMenuItem_Click);
             // 
             // 出库管理ToolStripMenuItem
             // 
             this.出库管理ToolStripMenuItem.Name = "出库管理ToolStripMenuItem";
-            this.出库管理ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.出库管理ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.出库管理ToolStripMenuItem.Text = "出库管理";
             // 
             // 卡管理ToolStripMenuItem
@@ -121,14 +122,14 @@
             // 发卡ToolStripMenuItem
             // 
             this.发卡ToolStripMenuItem.Name = "发卡ToolStripMenuItem";
-            this.发卡ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.发卡ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.发卡ToolStripMenuItem.Text = "发卡";
             this.发卡ToolStripMenuItem.Click += new System.EventHandler(this.发卡ToolStripMenuItem_Click);
             // 
             // 销卡ToolStripMenuItem
             // 
             this.销卡ToolStripMenuItem.Name = "销卡ToolStripMenuItem";
-            this.销卡ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.销卡ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.销卡ToolStripMenuItem.Text = "销卡";
             // 
             // 用户管理ToolStripMenuItem
@@ -142,7 +143,7 @@
             // 注册ToolStripMenuItem
             // 
             this.注册ToolStripMenuItem.Name = "注册ToolStripMenuItem";
-            this.注册ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.注册ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.注册ToolStripMenuItem.Text = "注册";
             this.注册ToolStripMenuItem.Click += new System.EventHandler(this.注册ToolStripMenuItem_Click);
             // 

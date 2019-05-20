@@ -11,8 +11,13 @@ namespace DAL
     {
         public static object getSpaceByType(string type)
         {
-            string sql = string.Format("SELECT count(*) FROM SpaceInfo where spaceType='{0}' and ICCardNo is null", type);
+            string sql = string.Format("SELECT count(*) FROM SpaceInfo where ICCardNo is NULL and spaceType='{0}' ", type);
             return (int)DBHelper.executeScalar(sql);
+        }
+        public static object updateSpaceInfo(string icon, string type)
+        {
+            string sql = string.Format("set rowcount 1 update spaceinfo set ICCardNo='{0}' where ICCardNo is null and spaceType='{1}'", icon, type);
+            return (int)DBHelper.ExecuteNonQuery(sql);
         }
     }
 }
