@@ -19,5 +19,10 @@ namespace DAL
             string sql = string.Format("Select bikeNo,bikePhoto from BikeInfo where icNo='{0}'", icno);
             return DBHelper.executeReader(sql);
         }
+        public static SqlDataReader getType(string icno)
+        {
+            string sql = string.Format("Select spaceType from SpaceInfo where ICCardNo='{0}'", icno);
+            return DBHelper.executeReader(sql);
+        }
     }
 }

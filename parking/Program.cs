@@ -17,7 +17,7 @@ namespace parking
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new EnterForm());
+            Application.Run(new Login());
         }
     }
 }

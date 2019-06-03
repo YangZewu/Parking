@@ -18,5 +18,9 @@ namespace BAL
         {
             return BikeInfoServer.getDataReader(icno);
         }
+        public static SqlDataReader getType(string icno)
+        {
+            return BikeInfoServer.getType(icno);
+        }
     }
 }

@@ -39,14 +39,24 @@ namespace parking
                             int dread = DCHelper.dc_read(icdev,4,data);
                             string s = System.Text.Encoding.Default.GetString(data);
                             SqlDataReader r= BikeInfoManag.getDataReader(s);
+                            
                             if (dread == 0)
                             {
                                 icno.Text = s;
                                 if (r.Read())
                                 {
                                     bikeno.Text = r["bikeNo"].ToString();
-                                    pictureBox1.Image = Image.FromFile(r["bikePhoto"].ToString());
+                                    pictureBox1.Image = Image.FromFile(r["bikePhoto"].ToString());                                    
                                     time.Text = System.DateTime.Now.ToString();
+                                    r.Close();
+                                    SqlDataReader rr = BikeInfoManag.getType(s);
+                                    if (rr.Read())
+                                    {
+                                        icstate.Text = rr["spaceType"].ToString();
+                                        
+                                        
+                                    }
+                                    rr.Close();
                                     DCHelper.dc_beep(icdev, 100);
                                 }
                                 else
@@ -54,7 +64,6 @@ namespace parking
                                     MessageBox.Show("该卡无效");
                                     for (int i = 0; i < 3; i++)
                                         DCHelper.dc_beep(icdev, 10);
-                                    r.Close();
                                 }
                             }
                         }
@@ -70,10 +79,19 @@ namespace parking
                 MessageBox.Show("请检查设备！");
             }
         }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Btn_OK_Click(object sender, EventArgs e)
+        {
+            //确定入库
+           int result= ParkingManag.insertParking(icno.Text, icstate.Text, time.Text);
+            if (result == 1)
+                MessageBox.Show("入库登记成功！");
+            else
+                MessageBox.Show("入库登记失败！");
         }
     }
 }
