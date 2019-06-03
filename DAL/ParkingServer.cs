@@ -9,7 +9,7 @@ namespace DAL
     {
         public static int insertParking(string ICCardNo, string BikeType, string enterTime)
         {
-            string sql = string.Format("insert into ParkingInfo (ICCardNo,BikeType,enterTime) values({0},{1},{2})",ICCardNo,BikeType,enterTime);
+            string sql = string.Format("insert into ParkingInfo (ICCardNo,BikeType,enterTime) values('{0}','{1}','{2}')",ICCardNo,BikeType,enterTime);
             return (int)DBHelper.ExecuteNonQuery(sql);
         }
     }
